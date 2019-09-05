@@ -1,20 +1,32 @@
-'use strict';
-
 var regExp = /\.(js|jsx)$/i;
+
+var visitor = {
+  ImportDeclaration(path, state) {
+    var source = path.node.source;
+
+    if (!source.value.match(regExp)) {
+      return;
+    }
+
+    source.value = source.value.replace(regExp, '');
+  },
+  ExportNamedDeclaration(path, state) {
+    var source = path.node.source;
+
+    if (!source.value.match(regExp)) {
+      return;
+    }
+
+    source.value = source.value.replace(regExp, '');
+  }
+}
 
 module.exports = function () {
   return {
     visitor: {
-      ImportDeclaration: function ImportDeclaration(path) {
-        var source = path.node.source;
-
-
-        if (!source.value.match(regExp)) {
-          return;
-        }
-
-        source.value = source.value.replace(regExp, '');
-      }
+      Program(path, state) {
+        path.traverse(visitor, state)
+      },
     }
   };
 };
