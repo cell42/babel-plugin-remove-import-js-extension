@@ -4,20 +4,24 @@ var visitor = {
   ImportDeclaration(path, state) {
     var source = path.node.source;
 
-    if (!source.value.match(regExp)) {
-      return;
-    }
+    if (source)  {
+      if (!source.value.match(regExp)) {
+        return;
+      }
 
-    source.value = source.value.replace(regExp, '');
+      source.value = source.value.replace(regExp, '');
+    }
   },
   ExportNamedDeclaration(path, state) {
     var source = path.node.source;
 
-    if (!source.value.match(regExp)) {
-      return;
-    }
+    if (source)  {
+      if (!source.value.match(regExp)) {
+        return;
+      }
 
-    source.value = source.value.replace(regExp, '');
+      source.value = source.value.replace(regExp, '');
+    }
   }
 }
 
