@@ -1,3 +1,5 @@
+Fork of [babel-plugin-remove-import-js-extension](https://github.com/dcamilleri/babel-plugin-remove-import-js-extension), with ".js" also being stripped from "export ... from" statements. Original README below:
+
 # babel-plugin-remove-import-js-extension
 
 This [Babel](https://babeljs.io/) plugin allows you to remove `.js` and `.jsx` extensions from JavaScript `import` statements.
